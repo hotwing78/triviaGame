@@ -1,3 +1,5 @@
+'use strict'
+
 var gulp = require('gulp'); // npm install gulp
 var sass = require('gulp-sass'); // npm install gulp-sass
 var browserify = require('gulp-browserify') // npm install gulp-browserify
@@ -7,15 +9,17 @@ var browserify = require('gulp-browserify') // npm install gulp-browserify
 gulp.task('default', ['html', 'css', 'js'])
 
 // SASS TO CSS
-gulp.task('css', function (){
-  gulp.src('./styles.css')
-  .pipe(sass())
-  .pipe(gulp.dest('./public'))
+gulp.task('css', function () {
+    gulp.src('./styles.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('./public/css'));
 });
 
 // MINIFY
 gulp.task('html', function(){
-  gulp.src('./index.html')
+  gulp.src('./templates/*.html')
+  .pipe(gulp.dest('./public/templates'));
+  return gulp.src('./index.html')
     .pipe(gulp.dest('./public'))
 });
 
@@ -23,12 +27,14 @@ gulp.task('html', function(){
 gulp.task('js', function(){
   gulp.src('./js/*.js')
     .pipe(browserify())
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./public/js'))
 });
 
 // WATCH CHANGES
 gulp.task('watch', function(){ //npm install gulp-watch
-  gulp.watch('./styles.css', ['css']);
-  gulp.watch('./index.html', ['html']);
   gulp.watch('./js/*.js', ['js']);
+  gulp.watch('./js/*/*.js', ['js']);
+  gulp.watch('./css/*.css', ['css']);
+  gulp.watch('./index.html', ['html']);
+  gulp.watch('./templates/*.html', ['html']);
 });
