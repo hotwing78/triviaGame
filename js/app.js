@@ -15,7 +15,7 @@ app.config(['$routeProvider', function($routeProvider){
 //I am importing my services and controllers here
 
 //services .....but why is app in parenthesis?
-require('./services/loginService')(app);
+require('./services/loginService');
 
 //Controllers
 require('./controllers/loginController')(app);

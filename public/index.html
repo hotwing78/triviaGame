@@ -2,21 +2,12 @@
 <html ng-app= 'TriviaApp'>
   <head>
     <link rel="stylesheet" href="./css/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.js"></script>
+    <script src="/js/app.js"></script>
   </head>
   <body>
-    <section ng-controller = 'triviaController'>
     <h1>THIS IS TRIVIA!!!</h1>
-    <div id="question">
-      <span><h3>Value: {{questionConfig.value}}</h3></span>
-      <span><h3>Question: {{questionConfig.question}}</h3></span>
-    </div>
-
-
-      <input type='text' ng-model = 'answer'>
-      <button  ng-click = 'newQuestion()'>Final Answer</button>
-
-  </section>
+    <section ng-view></section>
   </body>
 </html>
