@@ -8,11 +8,15 @@ module.exports = function (app) {
     app.factory('loginService', ['$http', function($http) {
         let info = [];
         let players = '';
+        let password = '123'
         return{
           getNumPlayers: function(num){
 
             players = num;
               console.log(players);
+          },
+          getPassword: function(){
+            return password;
           }
         }
     }]);

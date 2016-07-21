@@ -1,7 +1,8 @@
 <div>THIS IS THE NEXT PAGE</div>
 
-<h2>Category : {{myQuestion.category.title}}</h2>
-<h2>For {{myQuestion.value}} points your question is: {{myQuestion.question}}</h2>
+<ul>
+    <li ng-repeat="cat in categories"><a href="#/category/{{cat.id}}">{{cat.title}}</a></li>
+</ul>
 <a href="#/gameOver">GAME OVER</a>
 
 <!-- <div class="categories">

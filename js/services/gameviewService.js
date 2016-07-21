@@ -1,14 +1,41 @@
-module.exports = function(app){
+module.exports = function(app) {
 
-app.factory('gameviewService',['$http',function(app){
-  let questions = [];
+    app.factory('gameviewService', ['$http', function(app) {
+        let categories = [];
+        let questions = [];
 
-  let getCategories = function(){
-    $http({
-      method: 'GET',
-      url: 'http://jservice.io/api/categories?count=5',
-    })
-  }
+        return {
+            getCategories: function(count) {
+                $http({
+                    url: `http://jservice.io/api/categories?count=${count}`,
+                    method: 'get',
+                }).then(function(results) {
+                    let response = results.data;
 
-}]);
-}
+                    // Add these to the existing array (don't clear out the
+                    // stuff that's already there).
+                    response.forEach(function(category) {
+                        categories.push(category);
+                    });
+                });
+
+                return categories;
+            },
+            getQuestionsForCategory: function(categoryId) {
+                angular.copy([], questions);
+
+                $http({
+                    url: `http://jservice.io/api/category?id=${categoryId}`,
+                    method: 'get',
+                }).then(function(results) {
+                    let response = results.data.clues;
+
+                    // Copy response (question array from api) in questions array.
+                    angular.copy(response, questions);
+                });
+
+                return questions;
+            }
+        };
+    }]);
+};

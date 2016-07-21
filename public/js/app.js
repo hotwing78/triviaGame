@@ -1,13 +1,16 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function(app){
-  app.controller('gameOverController',['$scope','loginService',function($scope,loginService){
-
+  app.controller('gameOverController',['$scope','$location','loginService',function($scope,$location,loginService){
+      $scope.restart = function(){
+        $location.path('/');
+      }
   }]);
 };
 
 },{}],2:[function(require,module,exports){
 module.exports = function(app){
   app.controller('gameViewController',['$scope','loginService',function($scope,loginService){
+    $scope.categories = gameviewService.getCategories(1);
 
   }]);
 };
@@ -22,20 +25,20 @@ not mutate it.
 */
 module.exports = function (app) {
     app.controller('loginController', ['$scope', 'loginService','$location', function ($scope, loginService,$location) {
-      let password = '123';
-      let numPlayers = $scope.numPlayers;
-      console.log(numPlayers);
+      let password = '123'
+      let numPlayers = Number($scope.numPlayers);
+
+
 
 
 // I am attaching this function to the button in the login.html templates start button.
-      function logIn(){
-          console.log($location)
-          console.log('click click')
-        if($scope.password === logInfo.password){
+     $scope.logIn = function(){
+          console.log(password)
           console.log(numPlayers)
+        if($scope.password === password){
+
 //$location specifys where to go next..meaning what is showed in the addy bar.
           loginService.getNumPlayers(numPlayers);
-          console.log($location)
           $location.path('/gameView');
         }
       }
@@ -107,11 +110,15 @@ module.exports = function (app) {
     app.factory('loginService', ['$http', function($http) {
         let info = [];
         let players = '';
+        let password = '123'
         return{
           getNumPlayers: function(num){
 
             players = num;
               console.log(players);
+          },
+          getPassword: function(){
+            return password;
           }
         }
     }]);
