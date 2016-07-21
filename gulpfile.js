@@ -4,7 +4,7 @@ var browserify = require('gulp-browserify') // npm install gulp-browserify
 
 
 
-gulp.task('default', ['html','css', 'js'])
+gulp.task('default', ['html','css', 'js','jsApp'])
 
 gulp.task('css', function (){
   gulp.src('./main.css')
@@ -26,7 +26,7 @@ gulp.task('js', function(){
     .pipe(gulp.dest('./public/js'))
 });
 
-gulp.task('js', function(){
+gulp.task('jsApp', function(){
   gulp.src('./js/*/*.js')
     .pipe(browserify())
     .pipe(gulp.dest('./public/js'))

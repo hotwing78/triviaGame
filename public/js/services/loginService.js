@@ -10,7 +10,9 @@ module.exports = function (app) {
         let players = '';
         return{
           getNumPlayers: function(num){
+
             players = num;
+              console.log(players);
           }
         }
     }]);

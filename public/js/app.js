@@ -1,14 +1,66 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports = function(app){
+  app.controller('gameOverController',['$scope','loginService',function($scope,loginService){
+
+  }]);
+};
+
+},{}],2:[function(require,module,exports){
+module.exports = function(app){
+  app.controller('gameViewController',['$scope','loginService',function($scope,loginService){
+
+  }]);
+};
+
+},{}],3:[function(require,module,exports){
+/*
+The app parameter being passed, is coming from app.js
+declared by the statement: 'let app = angular.module('TriviaApp',[]);'
+
+Controllers are meant to change data inside the view, however it does
+not mutate it.
+*/
+module.exports = function (app) {
+    app.controller('loginController', ['$scope', 'loginService','$location', function ($scope, loginService,$location) {
+      let password = '123';
+      let numPlayers = $scope.numPlayers;
+      console.log(numPlayers);
+
+
+// I am attaching this function to the button in the login.html templates start button.
+      function logIn(){
+          console.log($location)
+          console.log('click click')
+        if($scope.password === logInfo.password){
+          console.log(numPlayers)
+//$location specifys where to go next..meaning what is showed in the addy bar.
+          loginService.getNumPlayers(numPlayers);
+          console.log($location)
+          $location.path('/gameView');
+        }
+      }
+    }]);
+};
+
+},{}],4:[function(require,module,exports){
 let app = angular.module('TriviaApp',['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
+  .when('/', {
+          redirectTo: '/login',
+      })
   .when('/',{
     controller: 'loginController',
-    templateUrl: 'templates/logIn'
+    templateUrl: './templates/login.html'
     })
   .when('/gameView',{
     controller: 'gameViewController',
-    templateUrl:'templates/gameView',
+    templateUrl:'./templates/gameView.html',
+  })
+  .when('/gameOver',{
+    controller: 'gameOverController',
+    templateUrl: './templates/gameOver.html'
   });
 }]);
 
@@ -20,6 +72,7 @@ require('./services/loginService')(app);
 //Controllers
 require('./controllers/loginController')(app);
 require('./controllers/gameViewController')(app);
+require('./controllers/gameOverController')(app);
 
 //Controllers
 // app.controller('triviaController',function($scope, $http){
@@ -43,3 +96,25 @@ require('./controllers/gameViewController')(app);
 //   };
 //   $scope.nextQuestion();
 // });//End of Controllers
+
+},{"./controllers/gameOverController":1,"./controllers/gameViewController":2,"./controllers/loginController":3,"./services/loginService":5}],5:[function(require,module,exports){
+/*
+The app parameter being passed, is coming from app.js
+declared by the statement: 'let app = angular.module('TriviaApp',[]);'
+*/
+module.exports = function (app) {
+                 //NAME           DEPENDENCIES
+    app.factory('loginService', ['$http', function($http) {
+        let info = [];
+        let players = '';
+        return{
+          getNumPlayers: function(num){
+
+            players = num;
+              console.log(players);
+          }
+        }
+    }]);
+};
+
+},{}]},{},[4])

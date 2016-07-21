@@ -2,24 +2,32 @@ let app = angular.module('TriviaApp',['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
+  .when('/', {
+          redirectTo: '/login',
+      })
   .when('/',{
     controller: 'loginController',
-    templateUrl: 'templates/logIn'
+    templateUrl: './templates/login.html'
     })
   .when('/gameView',{
     controller: 'gameViewController',
-    templateUrl:'templates/gameView',
+    templateUrl:'./templates/gameView.html',
+  })
+  .when('/gameOver',{
+    controller: 'gameOverController',
+    templateUrl: './templates/gameOver.html'
   });
 }]);
 
 //I am importing my services and controllers here
 
 //services .....but why is app in parenthesis?
-require('./services/loginService');
+require('./services/loginService')(app);
 
 //Controllers
 require('./controllers/loginController')(app);
 require('./controllers/gameViewController')(app);
+require('./controllers/gameOverController')(app);
 
 //Controllers
 // app.controller('triviaController',function($scope, $http){

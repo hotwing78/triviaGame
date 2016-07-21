@@ -1,0 +1,24 @@
+{
+  "name": "trivia",
+  "version": "1.0.0",
+  "description": "A trivia game",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hotwing78/triviaGame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hotwing78/triviaGame/issues"
+  },
+  "homepage": "https://github.com/hotwing78/triviaGame#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
