@@ -51,9 +51,9 @@ let app = angular.module('TriviaApp',['ngRoute']);
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
   .when('/', {
-          redirectTo: '/login',
+          redirectTo: '/gameView',
       })
-  .when('/',{
+  .when('/login',{
     controller: 'loginController',
     templateUrl: './templates/login.html'
     })

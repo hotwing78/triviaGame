@@ -14,7 +14,7 @@ module.exports = function(app) {
 
                     // Add these to the existing array (don't clear out the
                     // stuff that's already there).
-                    response.forEach(function(category) {
+                    response.forEach(function (category) {
                         categories.push(category);
                     });
                 });
